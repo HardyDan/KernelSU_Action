@@ -206,6 +206,12 @@ jobs:
         key: build-kernel-${{ env.DEVICE }}${{ env.UPLOADNAME }}
         max-size: 2G
 
+    - name: Prepare Kernel Configuration
+      run: |
+        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
+        # 自动接受默认配置
+        yes "" | make oldconfig
+
     - name: Build kernel
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
